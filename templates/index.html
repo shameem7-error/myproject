@@ -6,14 +6,38 @@
         body { font-family: Arial; text-align: center; margin: 50px; }
         input[type=text] { width: 400px; padding: 10px; margin: 10px 0; }
         input[type=submit] { padding: 10px 20px; }
+        .error { color: red; margin-top: 10px; }
     </style>
+    <script>
+        function validateForm() {
+            const url = document.forms["urlForm"]["url"].value.trim();
+            const errorDiv = document.getElementById("error-msg");
+            errorDiv.innerHTML = "";
+
+            if (!url) {
+                errorDiv.innerHTML = "⚠️ Please enter a URL.";
+                return false;
+            }
+
+            if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                errorDiv.innerHTML = "⚠️ URL must start with http:// or https://";
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
     <h1>🔒 Phishing URL Detector</h1>
-    <form method="POST">
+    
+    <form method="POST" name="urlForm" onsubmit="return validateForm();">
         <input type="text" name="url" placeholder="Enter URL to check" required><br>
         <input type="submit" value="Check URL">
     </form>
+
+    <div id="error-msg" class="error"></div>
+
     {% if result %}
         <h2>Result: {{ result }}</h2>
     {% endif %}
