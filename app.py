@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import joblib
 import re
+import os
 
 app = Flask(__name__)
 model = joblib.load("phishing_model_final.pkl")
@@ -29,7 +30,14 @@ def index():
             features = extract_features_from_url(url)
             prediction = model.predict([features])[0]
             result = "❌ Phishing Site" if prediction == 1 else "✅ Legitimate Site"
+        else:
+            result = "⚠️ Invalid input. Please enter a valid URL."
     return render_template("index.html", result=result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
+
+
+
+
