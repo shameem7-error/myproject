@@ -4,12 +4,12 @@ This project is a simple yet effective **Phishing URL Detection Web App** built 
 
 ---
 
-## 🚀 Features
+##  Features
 
-- ✅ Predict if a URL is Phishing or Legitimate
-- 🔍 Uses a trained ML model (RandomForestClassifier)
-- 🧠 Feature extraction based on URL structure
-- 🌐 Web interface using Flask
+-  Predict if a URL is Phishing or Legitimate
+-  Uses a trained ML model (RandomForestClassifier)
+-  Feature extraction based on URL structure
+-  Web interface using Flask
 
 ---
 
@@ -24,7 +24,7 @@ numpy
 
 ---
 
-## 🧠 Model Used
+##  Model Used
 
 **RandomForestClassifier** from `scikit-learn` is used to classify URLs. Features are extracted using basic URL characteristics like:
 - Use of IP address
